@@ -296,6 +296,10 @@
     updateRect = CGRectMake(transformedPoint.x, transformedPoint.y, updateRect.size.width, updateRect.size.height);
     
     fromViewController.view.frame = updateRect;
+    
+    if (self.delegate && [(id)self.delegate canPerformAction:@selector(modalDraggedPercentage:) withSender:self]) {
+        [self.delegate modalDraggedPercentage:percentComplete];
+    }
 }
 
 - (void)finishInteractiveTransition

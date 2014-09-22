@@ -15,6 +15,8 @@ typedef NS_ENUM(NSUInteger, ZFModalTransitonDirection) {
     ZFModalTransitonDirectionRight,
 };
 
+@protocol ZFModalTransitionAnimatorDelegate;
+
 @interface ZFDetectScrollViewEndGestureRecognizer : UIPanGestureRecognizer
 @property (nonatomic, weak) UIScrollView *scrollview;
 @end
@@ -27,8 +29,15 @@ typedef NS_ENUM(NSUInteger, ZFModalTransitonDirection) {
 @property CGFloat behindViewScale;
 @property CGFloat behindViewAlpha;
 @property CGFloat transitionDuration;
+@property (nonatomic, assign) id <ZFModalTransitionAnimatorDelegate> delegate;
 
 - (id)initWithModalViewController:(UIViewController *)modalViewController;
 - (void)setContentScrollView:(UIScrollView *)scrollView;
+
+@end
+
+@protocol ZFModalTransitionAnimatorDelegate <NSObject>
+
+- (void) modalDraggedPercentage:(CGFloat)percentage;
 
 @end
