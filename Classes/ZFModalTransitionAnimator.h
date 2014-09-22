@@ -39,5 +39,7 @@ typedef NS_ENUM(NSUInteger, ZFModalTransitonDirection) {
 @protocol ZFModalTransitionAnimatorDelegate <NSObject>
 
 - (void) modalDraggedPercentage:(CGFloat)percentage;
+- (void) modalRemoved;
+- (void) modalAdded;
 
 @end

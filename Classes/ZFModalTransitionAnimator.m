@@ -179,6 +179,10 @@
                              
                          }];
     }
+    
+    if (self.delegate && [(id)self.delegate canPerformAction:@selector(modalAdded) withSender:self]) {
+        [self.delegate modalAdded];
+    }
 }
 
 # pragma mark - Gesture
@@ -346,6 +350,10 @@
                          self.modalController = nil;
                      }];
     
+    if (self.delegate && [(id)self.delegate canPerformAction:@selector(modalRemoved) withSender:self]) {
+        [self.delegate modalRemoved];
+    }
+    
 }
 
 - (void)cancelInteractiveTransition
@@ -373,6 +381,10 @@
                      } completion:^(BOOL finished) {
                          [transitionContext completeTransition:NO];
                      }];
+    
+    if (self.delegate && [(id)self.delegate canPerformAction:@selector(modalAdded) withSender:self]) {
+        [self.delegate modalAdded];
+    }
 }
 
 #pragma mark - UIViewControllerTransitioningDelegate Methods
